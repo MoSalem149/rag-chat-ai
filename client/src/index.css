@@ -1,0 +1,159 @@
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #e5e5e5;
+}
+
+.app-container {
+  width: 650px;
+  max-width: 95%;
+  margin: 20px auto;
+  background: #f7f7f8;
+  padding: 15px;
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+
+.app-title {
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+.upload-box {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.upload-btn {
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background: white;
+  transition: 0.2s;
+}
+
+.upload-btn:hover {
+  background: #f0f0f0;
+}
+
+.file-name {
+  font-size: 12px;
+  margin-bottom: 10px;
+  word-break: break-word;
+}
+
+.chat-box {
+  height: 450px;
+  overflow-y: auto;
+  background: white;
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 1px solid #ddd;
+}
+
+.message {
+  padding: 10px;
+  border-radius: 12px;
+  max-width: 80%;
+  font-size: 14px;
+  line-height: 1.4;
+  word-wrap: break-word;
+}
+
+.message.user {
+  align-self: flex-end;
+  background: #dcf8c6;
+}
+
+.message.bot {
+  align-self: flex-start;
+  background: #ffffff;
+}
+
+.sources {
+  margin-top: 5px;
+  font-size: 12px;
+}
+
+.input-box {
+  display: flex;
+  margin-top: 10px;
+  gap: 10px;
+}
+
+.input-box input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  min-width: 0;
+}
+
+.send-btn {
+  padding: 10px 15px;
+  background: #000;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: 0.2s;
+}
+
+.send-btn:hover {
+  opacity: 0.8;
+}
+
+@media (max-width: 600px) {
+  .app-container {
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .chat-box {
+    flex: 1;
+    height: auto;
+  }
+
+  .message {
+    max-width: 90%;
+    font-size: 13px;
+  }
+
+  .input-box {
+    flex-direction: column;
+  }
+
+  .send-btn {
+    width: 100%;
+  }
+
+  .upload-box {
+    flex-direction: column;
+  }
+
+  .upload-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 900px) {
+  .app-container {
+    width: 90%;
+  }
+
+  .chat-box {
+    height: 500px;
+  }
+}
