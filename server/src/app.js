@@ -13,23 +13,20 @@ app.use(express.json());
 
 const PORT = process.env.PORT || 3000;
 
-async function startServer() {
-  try {
-    await mongoose.connect(process.env.MONGO_URI);
-    console.log("Mongo Connected");
+// routes FIRST (important)
+app.use("/api/chat", chatRoutes);
 
-    app.use("/api/chat", chatRoutes);
+app.get("/", (req, res) => {
+  res.send("API Running");
+});
 
-    app.get("/", (req, res) => {
-      res.send("API Running");
-    });
+// START SERVER IMMEDIATELY
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Server running on ${PORT}`);
+});
 
-    app.listen(PORT, "0.0.0.0", () => {
-      console.log(`Server running on ${PORT}`);
-    });
-  } catch (err) {
-    console.error("DB Connection Error:", err);
-  }
-}
-
-startServer();
+// CONNECT DB AFTER
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => console.log("Mongo Connected"))
+  .catch((err) => console.error("Mongo Error:", err));
