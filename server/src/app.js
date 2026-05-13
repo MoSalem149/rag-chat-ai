@@ -8,25 +8,28 @@ import chatRoutes from "./routes/chat.routes.js";
 dotenv.config();
 
 const app = express();
+
 app.use(cors());
 app.use(express.json());
 
-const PORT = process.env.PORT || 3000;
-
-// routes FIRST (important)
+// routes
 app.use("/api/chat", chatRoutes);
 
 app.get("/", (req, res) => {
   res.send("API Running");
 });
 
-// START SERVER IMMEDIATELY
+const PORT = process.env.PORT || 3000;
+
+//  START SERVER FIRST (Cloud Run requirement)
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server running on ${PORT}`);
 });
 
-// CONNECT DB AFTER
+// CONNECT DB AFTER (non-blocking)
 mongoose
-  .connect(process.env.MONGO_URI)
+  .connect(process.env.MONGO_URI, {
+    serverSelectionTimeoutMS: 30000, // helps prevent hanging
+  })
   .then(() => console.log("Mongo Connected"))
   .catch((err) => console.error("Mongo Error:", err));

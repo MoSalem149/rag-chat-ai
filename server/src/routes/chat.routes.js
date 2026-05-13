@@ -4,7 +4,7 @@ import { uploadFile, askQuestion } from "../controllers/chat.controller.js";
 
 const router = express.Router();
 
-const upload = multer({ dest: "src/uploads/" });
+const upload = multer({ dest: "/tmp/uploads/" });
 
 router.post("/upload", upload.single("file"), uploadFile);
 router.post("/ask", askQuestion);
